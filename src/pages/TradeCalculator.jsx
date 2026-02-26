@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, Plus, X, ArrowRightLeft, ShieldAlert, Loader2, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { useLeagueUsers, useLeagueRosters, usePlayers } from '../api/sleeper';
+import { useUser } from '../context/UserContext';
 import './TradeCalculator.css';
 
 // Simple heuristic: higher projection = higher "value". In a real app this would use KTC/FantasyCalc API for precise market values.
@@ -54,10 +55,23 @@ const TradeCalculator = () => {
     // Auto-select first two rosters for demo purposes, representing "You" and "Trade Partner"
     useMemo(() => {
         if (rosters && rosters.length >= 2 && !teamAId) {
-            setTeamAId(rosters[0].roster_id);
-            setTeamBId(rosters[1].roster_id);
+            let defaultRosterA = rosters[0];
+
+            // Override with user's roster if found
+            if (user && user.user_id) {
+                const userRoster = rosters.find(r => r.owner_id === user.user_id);
+                if (userRoster) defaultRosterA = userRoster;
+            }
+
+            setTeamAId(defaultRosterA.roster_id);
+
+            let defaultRosterB = rosters[1];
+            if (defaultRosterB.roster_id === defaultRosterA.roster_id) {
+                defaultRosterB = rosters[0];
+            }
+            setTeamBId(defaultRosterB.roster_id);
         }
-    }, [rosters, teamAId]);
+    }, [rosters, teamAId, user]);
 
     // Aggregate user mapping
     const activeTeams = useMemo(() => {

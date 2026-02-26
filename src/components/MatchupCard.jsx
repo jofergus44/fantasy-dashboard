@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { Loader2 } from 'lucide-react';
 import { useLeagueUsers, useLeagueRosters, useMatchups, usePlayers } from '../api/sleeper';
+import { useUser } from '../context/UserContext';
 import './MatchupCard.css';
 
 const PlayerRow = ({ playerId, points, rosterPositions, playersData, isReverse = false }) => {
@@ -30,6 +31,7 @@ const PlayerRow = ({ playerId, points, rosterPositions, playersData, isReverse =
 };
 
 const MatchupCard = () => {
+    const { user } = useUser();
     const { data: users, isLoading: usersLoading } = useLeagueUsers();
     const { data: rosters, isLoading: rostersLoading } = useLeagueRosters();
     // Fetching week 17 as a static historical fallback since it's the offseason
@@ -41,13 +43,29 @@ const MatchupCard = () => {
     const activeMatchup = useMemo(() => {
         if (!users || !rosters || !matchups || matchups.length === 0) return null;
 
-        // In a real app we'd find the logged-in user's roster ID. 
-        // Here we just grab the first matchup pairing we find (Matchup ID 1)
-        const matchupPair = matchups.filter(m => m.matchup_id === 1);
+        // Find the logged-in user's roster
+        let userRoster = null;
+        if (user && user.user_id) {
+            userRoster = rosters.find(r => r.owner_id === user.user_id);
+        }
+
+        let targetMatchupId = 1; // Default to Matchup 1 if user not found/not in league
+        if (userRoster) {
+            const userMatchup = matchups.find(m => m.roster_id === userRoster.roster_id);
+            if (userMatchup) targetMatchupId = userMatchup.matchup_id;
+        }
+
+        const matchupPair = matchups.filter(m => m.matchup_id === targetMatchupId);
         if (matchupPair.length !== 2) return null;
 
-        const teamA = matchupPair[0];
-        const teamB = matchupPair[1];
+        // Ensure the logged-in user is ALWAYS Team A (on the left)
+        let teamA = matchupPair[0];
+        let teamB = matchupPair[1];
+
+        if (userRoster && teamB.roster_id === userRoster.roster_id) {
+            teamA = matchupPair[1];
+            teamB = matchupPair[0];
+        }
 
         const rosterA = rosters.find(r => r.roster_id === teamA.roster_id);
         const rosterB = rosters.find(r => r.roster_id === teamB.roster_id);
