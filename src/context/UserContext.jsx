@@ -20,23 +20,49 @@ export const UserProvider = ({ children }) => {
         setIsLoading(false);
     }, []);
 
-    const login = async (username) => {
+    const login = async (searchTerm) => {
         try {
-            // Sleeper API requires searching user by exact username
-            const res = await fetch(`https://api.sleeper.app/v1/user/${username}`);
-            if (!res.ok) throw new Error('User not found');
+            const term = searchTerm.toLowerCase().trim();
+            let matchedUser = null;
 
-            const userData = await res.json();
+            // 1. Fetch all users in our specific league to allow for flexible matching
+            // (e.g. matching their custom team name or display name instead of just exact Sleeper username)
+            const LEAGUE_ID = '1327673467570515968';
+            const leagueRes = await fetch(`https://api.sleeper.app/v1/league/${LEAGUE_ID}/users`);
 
-            if (!userData || !userData.user_id) {
-                throw new Error('Invalid user data received');
+            if (leagueRes.ok) {
+                const leagueUsers = await leagueRes.json();
+
+                // Try to find a match in this order of priority:
+                // A) Exact username match (case insensitive)
+                // B) Exact display_name match (case insensitive)
+                // C) Exact team_name match from metadata (case insensitive)
+                matchedUser = leagueUsers.find(u =>
+                    (u.username && u.username.toLowerCase() === term) ||
+                    (u.display_name && u.display_name.toLowerCase() === term) ||
+                    (u.metadata?.team_name && u.metadata.team_name.toLowerCase() === term)
+                );
+            }
+
+            // 2. Fallback: If not found in the league (or league fetch failed), try the global Sleeper User API 
+            // (This requires an exact username match)
+            if (!matchedUser) {
+                const res = await fetch(`https://api.sleeper.app/v1/user/${term}`);
+                if (res.ok) {
+                    matchedUser = await res.json();
+                }
+            }
+
+            if (!matchedUser || !matchedUser.user_id) {
+                throw new Error('User not found in league or global search');
             }
 
             const sessionUser = {
-                username: userData.username,
-                user_id: userData.user_id,
-                avatar: userData.avatar,
-                display_name: userData.display_name
+                username: matchedUser.username,
+                user_id: matchedUser.user_id,
+                avatar: matchedUser.avatar,
+                display_name: matchedUser.display_name,
+                team_name: matchedUser.metadata?.team_name
             };
 
             setUser(sessionUser);
