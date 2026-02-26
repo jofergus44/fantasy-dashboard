@@ -1,0 +1,220 @@
+.market-explorer {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.market-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-6);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+.market-stats {
+    display: flex;
+    gap: var(--space-6);
+    padding: var(--space-3) var(--space-6);
+}
+
+.stat {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.stat-icon {
+    color: var(--accent-green);
+}
+
+.stat-icon.warning {
+    color: var(--accent-red);
+}
+
+.market-toolbar {
+    display: flex;
+    gap: var(--space-4);
+    padding: var(--space-2);
+    margin-bottom: var(--space-6);
+}
+
+.global-search {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: 0 var(--space-4);
+    background: transparent;
+}
+
+.global-search input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    outline: none;
+    font-size: 1.125rem;
+    padding: var(--space-3) 0;
+}
+
+.global-search .search-icon {
+    color: var(--text-tertiary);
+}
+
+.filter-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: 0 var(--space-6);
+    background-color: var(--bg-panel-hover);
+    color: var(--text-primary);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: all 0.2s;
+    border-left: 1px solid var(--border-light);
+}
+
+.filter-btn:hover {
+    background-color: var(--text-tertiary);
+}
+
+/* Feed Container */
+.feed-container h3 {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
+    padding-bottom: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.trade-feed {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.feed-card {
+    padding: var(--space-6);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.feed-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--border-focus);
+}
+
+.feed-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-4);
+    font-size: 0.875rem;
+}
+
+.trade-time {
+    display: flex;
+    align-items: center;
+    gap: var(--space-1);
+    color: var(--text-tertiary);
+}
+
+.league-type {
+    color: var(--text-secondary);
+    background-color: var(--bg-panel-hover);
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+}
+
+.analysis-badge {
+    margin-left: auto;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    letter-spacing: 0.5px;
+}
+
+.analysis-badge.fair-value {
+    color: var(--accent-blue);
+    background-color: var(--accent-blue-dim);
+}
+
+.analysis-badge.overpay {
+    color: var(--accent-red);
+    background-color: var(--accent-red-dim);
+}
+
+.analysis-badge.steal {
+    color: var(--accent-green);
+    background-color: var(--accent-green-dim);
+}
+
+.feed-card-body {
+    display: flex;
+    align-items: stretch;
+}
+
+.trade-side {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    background-color: var(--bg-base);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-light);
+}
+
+.feed-divider {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60px;
+    color: var(--text-tertiary);
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: var(--space-4) 0;
+}
+
+.exchange-line {
+    flex: 1;
+    width: 1px;
+    background-color: var(--border-light);
+    margin: var(--space-2) 0;
+}
+
+/* Trade Asset */
+.market-asset {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.asset-pos {
+    font-weight: 700;
+    color: var(--accent-blue);
+    width: 24px;
+}
+
+.asset-pos.pick {
+    color: var(--accent-gold);
+    width: 36px;
+}
+
+.asset-name {
+    font-weight: 600;
+    flex: 1;
+}
+
+.asset-team {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+}

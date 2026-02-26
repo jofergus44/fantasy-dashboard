@@ -1,0 +1,85 @@
+.league-sidebar {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.matchup-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.mini-matchup {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.mini-matchup:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-blue);
+    border-color: var(--accent-blue);
+}
+
+.mini-status {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-1);
+    font-size: 0.75rem;
+}
+
+.status-badge {
+    font-weight: 700;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+}
+
+.status-badge.live {
+    color: var(--accent-red);
+    animation: pulse-red 2s infinite;
+}
+
+.time-remaining {
+    color: var(--text-secondary);
+}
+
+.mini-team {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.mini-team.winning {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.mini-team.winning .mini-score {
+    color: var(--accent-green);
+}
+
+.mini-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+}
+
+.mini-score {
+    font-family: var(--font-display);
+}

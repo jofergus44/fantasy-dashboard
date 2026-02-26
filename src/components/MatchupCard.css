@@ -1,0 +1,241 @@
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.matchup-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.matchup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-6) var(--space-8);
+    border-bottom: 1px solid var(--border-light);
+    background: linear-gradient(180deg, rgba(20, 20, 23, 0.8) 0%, rgba(20, 20, 23, 0.4) 100%);
+}
+
+.team-badge {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    flex: 1;
+}
+
+.team-badge.reverse {
+    justify-content: flex-end;
+    text-align: right;
+}
+
+.avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.team-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+}
+
+.team-info .manager {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.score-display {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex: 1;
+    justify-content: center;
+}
+
+.score {
+    font-size: 3rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1;
+}
+
+.score.winning {
+    color: var(--accent-green);
+    text-shadow: var(--shadow-glow-green);
+}
+
+.score.losing {
+    color: var(--text-secondary);
+}
+
+.win-prob-bar {
+    width: 120px;
+    height: 6px;
+    background-color: var(--bg-panel-hover);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.prob-fill {
+    height: 100%;
+    background-color: var(--accent-green);
+    box-shadow: 0 0 8px var(--accent-green);
+    transition: width 1s ease-in-out;
+}
+
+/* Roster Section */
+.roster-comparison {
+    display: flex;
+    padding: var(--space-4);
+}
+
+.roster-column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.roster-divider {
+    width: 1px;
+    background-color: var(--border-light);
+    margin: 0 var(--space-4);
+}
+
+.player-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-base);
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.player-row:hover {
+    background-color: var(--bg-panel-hover);
+    border-color: var(--border-light);
+}
+
+.player-row.reverse {
+    flex-direction: row-reverse;
+    text-align: right;
+}
+
+.player-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.player-row.reverse .player-info {
+    flex-direction: row-reverse;
+}
+
+.player-pos {
+    font-weight: 700;
+    font-size: 0.875rem;
+    color: var(--accent-blue);
+    width: 28px;
+    text-align: center;
+}
+
+.player-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.player-name {
+    font-weight: 600;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.player-row.reverse .player-name {
+    justify-content: flex-end;
+}
+
+.redzone-alert {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--accent-red);
+    box-shadow: 0 0 8px var(--accent-red);
+    animation: pulse-red 1.5s infinite;
+}
+
+.player-matchup {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    margin-top: 2px;
+}
+
+.player-score-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.player-row.reverse .player-score-block {
+    align-items: flex-start;
+}
+
+.player-score {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+.player-score.pulsing {
+    color: var(--text-primary);
+    /* Optional: subtle pulse effect to indicate live scoring */
+    animation: pulse-text 2s infinite;
+}
+
+.player-proj {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+@keyframes pulse-red {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 6px rgba(255, 51, 102, 0);
+    }
+
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(255, 51, 102, 0);
+    }
+}
+
+@keyframes pulse-text {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+}

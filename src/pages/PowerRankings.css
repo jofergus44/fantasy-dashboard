@@ -1,0 +1,209 @@
+.power-rankings {
+    height: 100%;
+}
+
+.rankings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--space-6);
+}
+
+.mode-toggle {
+    display: flex;
+    padding: var(--space-1);
+    border-radius: var(--radius-lg);
+}
+
+.toggle-btn {
+    padding: var(--space-2) var(--space-6);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+}
+
+.toggle-btn:hover {
+    color: var(--text-primary);
+}
+
+.toggle-btn.active {
+    background-color: var(--bg-panel-hover);
+    color: var(--accent-blue);
+    box-shadow: inset 0 0 0 1px var(--border-light);
+}
+
+/* Table Styles */
+.table-container {
+    overflow-x: auto;
+    border-radius: var(--radius-xl);
+    padding: var(--space-2);
+}
+
+.rankings-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.rankings-table th {
+    padding: var(--space-4) var(--space-6);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.rankings-table td {
+    padding: var(--space-4) var(--space-6);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    vertical-align: middle;
+}
+
+.team-row {
+    transition: background-color 0.2s;
+}
+
+.team-row:hover {
+    background-color: var(--bg-panel-hover);
+}
+
+.team-row:last-child td {
+    border-bottom: none;
+}
+
+/* Alignment Utilities */
+.th-center,
+.td-center {
+    text-align: center;
+}
+
+.th-num,
+.td-num {
+    text-align: right;
+    font-family: var(--font-display);
+}
+
+/* Specific Cell Styles */
+.trend-up {
+    color: var(--accent-green);
+    filter: drop-shadow(0 0 4px rgba(0, 255, 135, 0.4));
+}
+
+.trend-down {
+    color: var(--accent-red);
+}
+
+.trend-flat {
+    color: var(--text-tertiary);
+}
+
+.rank-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-weight: 700;
+    font-family: var(--font-display);
+}
+
+.rank-badge.first {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+    color: #fff;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
+.rank-badge.podium {
+    background-color: var(--bg-panel-hover);
+    border: 1px solid var(--border-light);
+    color: var(--text-primary);
+}
+
+.rank-badge.standard {
+    color: var(--text-secondary);
+}
+
+.team-name-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-name {
+    font-weight: 700;
+    font-size: 1.125rem;
+    color: var(--text-primary);
+}
+
+.manager-name {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.power-score-bar-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-3);
+}
+
+.power-score-val {
+    font-size: 1.125rem;
+    font-weight: 700;
+}
+
+.power-score-bar {
+    width: 60px;
+    height: 6px;
+    background-color: var(--bg-base);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.power-score-fill {
+    height: 100%;
+    border-radius: var(--radius-sm);
+}
+
+.td-highlight {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.streak-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.streak-badge.win {
+    background-color: rgba(0, 255, 135, 0.1);
+    color: var(--accent-green);
+    border: 1px solid rgba(0, 255, 135, 0.2);
+}
+
+.streak-badge.loss {
+    background-color: rgba(255, 51, 102, 0.1);
+    color: var(--accent-red);
+    border: 1px solid rgba(255, 51, 102, 0.2);
+}
+
+.td-text-muted {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+.draft-capital-badge {
+    font-size: 0.75rem;
+    color: var(--accent-blue);
+    background-color: rgba(0, 210, 255, 0.1);
+    padding: 4px 8px;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+}
